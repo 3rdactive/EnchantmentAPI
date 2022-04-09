@@ -2,8 +2,6 @@ package com.rdactive.enchantmentapi;
 
 
 import com.rdactive.enchantmentapi.commands.main;
-import com.sun.tools.javac.util.List;
-import jdk.tools.jmod.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
