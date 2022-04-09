@@ -1,0 +1,11 @@
+name: EnchantmentAPI
+version: '${project.version}'
+main: com.rdactive.enchantmentapi.EnchantmentAPI
+api-version: 1.18
+load: STARTUP
+authors: [ 3rdactive ]
+description: make custom enchantments!
+commands:
+  eapi:
+    permission: 4
+    description: EAPI
