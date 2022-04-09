@@ -8,6 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Locale;
@@ -80,12 +81,12 @@ public class main implements CommandExecutor {
                     player.sendMessage(ChatColor.RED+""+ChatColor.BOLD+"The item you are holding does not support the enchantment. \n use -force at the end of the command to enchant anyway");
                     return true;
                 }
-                if(level>enchant.getMaxLevel() || level > 0){
+                if(level>enchant.getMaxLevel() || level < 1){
                     player.sendMessage(ChatColor.RED+""+ChatColor.BOLD+"The enchantment does not support the level you entered. \n use -force at the end of the command to enchant anyway");
                     return true;
                 }
             }
-            CustomEnchant.addEnchantment(item,enchant,level,forced);
+            player.getInventory().setItem(EquipmentSlot.HAND,CustomEnchant.addEnchantment(item,enchant,level,forced));
             if(item.containsEnchantment(enchant)){
                 player.sendMessage(ChatColor.GREEN+"The enchant: " + enchant.getName() + " On level: " + level + " Was added to your: " + item.getType().name());
             }

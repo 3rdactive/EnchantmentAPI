@@ -10,6 +10,7 @@ import org.bukkit.plugin.Plugin;
 import org.checkerframework.checker.units.qual.A;
 
 import java.lang.reflect.Field;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class CustomEnchant extends Enchantment {
         this.chanceToAppear = chanceToAppear;
     }
 
-    public static void addEnchantment(ItemStack itemStack,CustomEnchant enchant,int level,boolean ignoreRestriction){
+    public static ItemStack addEnchantment(ItemStack itemStack,CustomEnchant enchant,int level,boolean ignoreRestriction){
         if(ignoreRestriction){
             String numberToString="";
             ItemMeta meta = itemStack.getItemMeta();
@@ -80,12 +81,15 @@ public class CustomEnchant extends Enchantment {
                 Lore.add(ChatColor.GRAY+enchant.name+" " + numberToString);
             meta.setLore(Lore);
             itemStack.setItemMeta(meta);
+            return itemStack;
         }
         else if(enchant.canEnchantItem(itemStack)){
             String numberToString="";
             ItemMeta meta = itemStack.getItemMeta();
             itemStack.addEnchantment(enchant,level);
             List<String> Lore = meta.getLore();
+            if(Lore==null)
+                Lore = new ArrayList<String>();
             if(enchant.getMaxLevel()>1)
                 numberToString=EnchantmentAPI.integerToRoman(level);
             if(enchant.isCursed())
@@ -94,8 +98,9 @@ public class CustomEnchant extends Enchantment {
                 Lore.add(ChatColor.GRAY+enchant.name+" " + numberToString);
             meta.setLore(Lore);
             itemStack.setItemMeta(meta);
-
+            return itemStack;
         }
+        return null;
     }
 
     NamespacedKey key;
@@ -106,6 +111,7 @@ public class CustomEnchant extends Enchantment {
     boolean isCurse;
     int chanceToAppear;
     ArrayList<Enchantment> conflicted = new ArrayList<Enchantment>();
+
     public CustomEnchant(NamespacedKey key, EnchantmentTarget target, int maxLevel, String name, boolean isCurse,int chanceToAppear, ArrayList<Enchantment> conflicted) {
         super(key);
         this.key=key;
@@ -113,8 +119,10 @@ public class CustomEnchant extends Enchantment {
         this.maxLevel=maxLevel;
         this.name=name;
         this.conflicted=conflicted;
+        this.id=key.getKey();
         this.isCurse=isCurse;
         this.chanceToAppear=chanceToAppear;
+        EnchantmentAPI.getCustomEnchantList().add(this);
         boolean registered = false;
         try {
             Field f = Enchantment.class.getDeclaredField("acceptingNew");
@@ -136,8 +144,10 @@ public class CustomEnchant extends Enchantment {
         this.target=target;
         this.maxLevel=maxLevel;
         this.name=name;
+        this.id=key.getKey();
         this.isCurse=isCurse;
         this.chanceToAppear=chanceToAppear;
+        EnchantmentAPI.getCustomEnchantList().add(this);
         boolean registered = false;
         try {
             Field f = Enchantment.class.getDeclaredField("acceptingNew");
