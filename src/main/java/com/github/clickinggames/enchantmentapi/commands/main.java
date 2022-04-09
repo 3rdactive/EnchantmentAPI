@@ -1,7 +1,7 @@
-package com.rdactive.enchantmentapi.commands;
+package com.github.clickinggames.enchantmentapi.commands;
 
-import com.rdactive.enchantmentapi.CustomEnchant;
-import com.rdactive.enchantmentapi.EnchantmentAPI;
+import com.github.clickinggames.enchantmentapi.CustomEnchant;
+import com.github.clickinggames.enchantmentapi.EnchantmentAPI;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

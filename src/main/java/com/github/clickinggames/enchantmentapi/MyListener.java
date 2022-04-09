@@ -1,5 +1,5 @@
 
-package com.rdactive.enchantmentapi;
+package com.github.clickinggames.enchantmentapi;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

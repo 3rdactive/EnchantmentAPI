@@ -1,4 +1,4 @@
-package com.rdactive.enchantmentapi;
+package com.github.clickinggames.enchantmentapi;
 
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;

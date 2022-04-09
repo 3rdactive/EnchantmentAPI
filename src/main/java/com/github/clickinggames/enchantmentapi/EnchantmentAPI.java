@@ -1,7 +1,7 @@
-package com.rdactive.enchantmentapi;
+package com.github.clickinggames.enchantmentapi;
 
 
-import com.rdactive.enchantmentapi.commands.main;
+import com.github.clickinggames.enchantmentapi.commands.main;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

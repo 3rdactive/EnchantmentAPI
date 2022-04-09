@@ -1,6 +1,6 @@
 name: EnchantmentAPI
 version: '${project.version}'
-main: com.rdactive.enchantmentapi.EnchantmentAPI
+main: com.github.clickinggames.enchantmentapi.EnchantmentAPI
 api-version: 1.18
 load: STARTUP
 authors: [ 3rdactive ]
