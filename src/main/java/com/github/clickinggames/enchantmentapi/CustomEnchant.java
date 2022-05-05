@@ -70,9 +70,12 @@ public class CustomEnchant extends Enchantment {
     public static ItemStack addEnchantment(ItemStack itemStack,CustomEnchant enchant,int level,boolean ignoreRestriction){
         if(ignoreRestriction){
             String numberToString="";
+
             ItemMeta meta = itemStack.getItemMeta();
-            itemStack.addEnchantment(enchant,level);
+            meta.addEnchant(enchant,level,true);
             List<String> Lore = meta.getLore();
+            if(!meta.hasLore())
+                Lore = new ArrayList<>();
             if(enchant.getMaxLevel()>1)
                 numberToString=EnchantmentAPI.integerToRoman(level);
             if(enchant.isCursed())
@@ -86,7 +89,7 @@ public class CustomEnchant extends Enchantment {
         else if(enchant.canEnchantItem(itemStack)){
             String numberToString="";
             ItemMeta meta = itemStack.getItemMeta();
-            itemStack.addEnchantment(enchant,level);
+            meta.addEnchant(enchant,level,false);
             List<String> Lore = meta.getLore();
             if(Lore==null)
                 Lore = new ArrayList<String>();

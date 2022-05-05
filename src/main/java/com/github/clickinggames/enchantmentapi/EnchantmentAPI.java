@@ -27,6 +27,7 @@ public final class EnchantmentAPI extends JavaPlugin {
     public void onEnable() {
         Bukkit.broadcastMessage("EAPI: Eapi is now enabled! thank you for picking EAPI!");
         this.getCommand("eapi").setExecutor(new main());
+        getServer().getPluginManager().registerEvents(new MyListener(this), this);
 
     }
 
